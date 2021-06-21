@@ -52,19 +52,20 @@ EXTRACT_DATA=yes
 
 RUN_CHGRES=yes
 
-yy=2021
-mm=03
-dd=21
-hh=06
+yy=2017
+mm=12
+dd=22
+hh=00
 
 use_v16retro=no
+use_v15retro=no
 
 LEVS=65
 
 CDUMP=gdas
 
-CRES_HIRES=C192
-CRES_ENKF=C96
+CRES_HIRES=C384
+CRES_ENKF=C384
 
 UFS_DIR=$PWD/../..
 
@@ -77,6 +78,11 @@ OUTDIR=/gpfs/dell1/stmp/$USER/gdas.init/output
 if [ "$use_v16retro" = "yes" ]; then
 
   gfs_ver=v16retro
+
+#else
+elif [ "$use_v15retro" = "yes" ]; then
+
+  gfs_ver=v15retro
 
 else
 
@@ -92,7 +98,8 @@ else
   elif [ $yy$mm$dd$hh -lt 2017072000 ]; then
     gfs_ver=v13
   elif [ $yy$mm$dd$hh -lt 2019061200 ]; then
-    gfs_ver=v14
+#    gfs_ver=v14
+    gfs_ver=v15retro	
   elif [ $yy$mm$dd$hh -lt 2021032100 ]; then
     gfs_ver=v15
 # The way the v16 switch over was done, there is no complete
